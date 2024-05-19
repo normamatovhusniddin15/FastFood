@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    {% for product in products %}
+    <div class="card border border-0 shadow d-inline-block m-4 mt-20" style="width: 20rem;">
+        <img src="{{ product.image.url }}" height="200" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="align-center card-title" style="text-align: center;"><strong>{{product.name}}</strong></h5>
+          <h5 style="text-align: center;"><strong>{{product.price}}</strong></h5>
+          <div class="buttons d-flex flex-wrap justify-content-between"></div>
+          <a href="{% url 'addremovesaved' product.id %}" class="btn btn-outline-primary mt-4">Saqlash</a>
+          <a href="{% url 'detail' product.pk %}" class="btn btn-outline-primary float-end mt-4" >Ko'rish</a>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+    <div class="container">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-8 mt-5 shadow-sm ">
+          <h6 class="pt-2" >Add comment</h6>
+          <form action="{% url 'new_comment' %}" method="post" class="input-group"> {% csrf_token %}
+              <input class="form-control" name="body" type="text" placeholder="Type your comment..." aria-describedby="'button-addon" >
+              <button class="btn btn-outline-success" type="submit" id="button-addon">Send</button>
+          </form>  
+          <hr>
+          <h6>Comments</h6>
+
+          {% for comment in commments %}
+          <strong class="text-muted" style="color: rgba(0, 255, 106, 0.925);">@{{comment.author}} | {{comment.date}}</strong>
+          <p>{{comment.body}} 
+              {% if request.user == comment.author %}
+                  <strong><a href="{% url 'comment_delete' comment.id %}" class="btn btn-outline-warning">Delete</a></strong>  
+              {% endif %} 
+          </p>  
+          {% endfor %}
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+  <footer class="bg-light text-center text-lg-start">
+    <div class="container p-4">
+      <div class="row">
+        <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-center">
+          <h5 class="text-uppercase">Telegram</h5>
+          <a class="btn btn-primary" href="https://t.me/@A2004bek" role="button">Aloqaga Chiqish</a>
+        </div>
+        <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-center">
+          <h5 class="text-uppercase">Instagram</h5>
+          <a  class='btn btn-primary' href ="https://www.instagram.com/firdavs_real_king/" >Aloqaga chiqish</a>
+        </div>
+        <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-center">
+          <h5 class="text-uppercase">Telefon</h5>
+          <a href="tel:+998901851410" class="btn btn-primary" >938852992</a>
+        </div>
+        <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-center">
+          <h5 class="text-uppercase">Email</h5>
+          <a href="mailto:ibrohimova100@gmail.com" class="btn btn-primary" >normamatovhusniddin150@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </footer> 
+{% endblock content %}

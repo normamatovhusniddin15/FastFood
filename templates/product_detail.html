@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-8">
+            <div class="card border border-0 shadow d-inline-block m-1 mt-3"  >
+                <img src="{{ product.image.url }}" height="500" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h6 class="align-center card-title" style="text-align: center;">{{product.name}}</h6>
+                  <a href="{% url 'home' %}" class="btn btn-warning">Hammasi</a>
+                  <div class="buttons d-flex flex-wrap justify-content-between"></div>
+                </div>
+              </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock content %}

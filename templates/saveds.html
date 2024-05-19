@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+  E-Bazar - Saved Product
+{% endblock title %}
+{% block content %}
+   <div class="container">
+    <div class=" w-100 mt-4">
+        <h4 class="d-block" >Saved Product</h4>
+        <div class="d-flex flex-wrap justify-content-between">
+            {% for i in saveds %}
+            <div class="card border border-0 shadow-sm d-inline-block m-1 mt-3" style="width: 16.5rem;" >
+                <img height="200" class=" card-img-top" src="{{i.product.image.url}}" alt="">
+                <div class="card-body">
+                    <h5 style="text-align: center;"><strong>{{i.product.name}}</strong></h5>
+                    <h5 style="text-align: center;"><strong>{{i.product.price}}</strong></h5>
+                    <div class="buttons d-flex flex-wrap justify-content-between ">
+                        <a href="{% url 'delete' i.pk %}" class="btn btn-outline-success">Tashlash</a> 
+                    </div>
+                </div>
+            </div>  
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
